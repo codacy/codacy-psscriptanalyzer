@@ -36,6 +36,6 @@ ENTRYPOINT pwsh -c \
         \$patternId = \$_.RuleName.ToLower(); \
         \$line = \$_.line; \
         \$result = [ordered] @{ filename = \$fileName; message = \$message; patternId = \$patternId; line = \$line }; \
-        \$result | ConvertTo-Json \
+        \$result | ConvertTo-Json -Compress \
         } \
     "
