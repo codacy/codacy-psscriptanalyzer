@@ -20,7 +20,7 @@ foreach(\$pat in \$patterns) { \
 \$patternFormat = [ordered] @{ name = 'psscriptanalyzer'; patterns = \$codacyPatterns} ;\
 \$patternFormat | ConvertTo-Json -Depth 5 | Out-File /docs/patterns.json -Force -Encoding ascii; \
 \$newLine = [system.environment]::NewLine; \
-\$testFileContent = \"##Patterns: psavoidusingcmdletaliases $newLine function TestFunc {$newLine##Warn: psavoidusingcmdletaliases$newLinegps$newLine}\"; \
+\$testFileContent = \"##Patterns: psavoidusingcmdletaliases\$newLine function TestFunc {\$newLine  ##Warn: psavoidusingcmdletaliases\$newLine  gps\$newLine}\"; \
 New-Item -ItemType Directory /docs/tests -Force | Out-Null ;\
 \$testFileContent | Out-File /docs/tests/aliasTest.ps1 -Force" 
 
