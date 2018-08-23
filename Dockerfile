@@ -1,10 +1,10 @@
-FROM microsoft/powershell:latest
+FROM microsoft/powershell:ubuntu-16.04
 
 ARG IMAGE_NAME=PSCodacy
 
 LABEL maintainer="Aditya Patwardhan <adityap@microsoft.com>"
 
-RUN pwsh -c Install-Module PSScriptAnalyzer -Force
+RUN pwsh -c Install-Module PSScriptAnalyzer -RequiredVersion 1.17.1 -Force
 
 RUN pwsh -c " \
 \$null = New-Item -Type Directory /docs -Force; \
