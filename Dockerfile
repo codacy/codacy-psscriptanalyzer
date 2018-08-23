@@ -24,7 +24,7 @@ foreach(\$pat in \$patterns) { \
 New-Item -ItemType Directory /docs/tests -Force | Out-Null ;\
 \$testFileContent | Out-File /docs/tests/aliasTest.ps1 -Force" 
 
-RUN useradd -ms /bin/bash docker
+RUN useradd -ms /bin/bash -u 2004 docker
 USER docker
 WORKDIR /src
 
