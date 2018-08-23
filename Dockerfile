@@ -20,11 +20,11 @@ foreach(\$pat in \$patterns) { \
 \$patternFormat = [ordered] @{ name = 'psscriptanalyzer'; patterns = \$codacyPatterns} ;\
 \$patternFormat | ConvertTo-Json -Depth 5 | Out-File /docs/patterns.json -Force -Encoding ascii; \
 \$newLine = [system.environment]::NewLine; \
-\$testFileContent = \"##Patterns: psavoidusingcmdletaliases $newLine function TestFunc {$newLine##Warn: psavoidusingcmdletaliases$newLinegps$newLine}\"; \
+\$testFileContent = \"##Patterns: psavoidusingcmdletaliases\$newLine function TestFunc {\$newLine  ##Warn: psavoidusingcmdletaliases\$newLine  gps\$newLine}\"; \
 New-Item -ItemType Directory /docs/tests -Force | Out-Null ;\
 \$testFileContent | Out-File /docs/tests/aliasTest.ps1 -Force" 
 
-RUN useradd -ms /bin/bash docker
+RUN useradd -ms /bin/bash -u 2004 docker
 USER docker
 WORKDIR /src
 
@@ -36,6 +36,6 @@ ENTRYPOINT pwsh -c \
         \$patternId = \$_.RuleName.ToLower(); \
         \$line = \$_.line; \
         \$result = [ordered] @{ filename = \$fileName; message = \$message; patternId = \$patternId; line = \$line }; \
-        \$result | ConvertTo-Json \
+        \$result | ConvertTo-Json -Compress \
         } \
     "
