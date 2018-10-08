@@ -15,9 +15,9 @@ foreach(\$pat in \$patterns) { \
     \$level = if(\$pat.Severity -eq 'Information') { 'Info' } else { \$pat.Severity.ToString() } ;   \
     \$category = if(\$level -eq 'Info') { 'CodeStyle' } else { 'ErrorProne' } ;  \
     \$parameters = @([ordered]@{name = \$patternId; default = 'vars'}) ; \
-    \$codacyPatterns += [ordered] @{ patternId = \$patternId; level = \$level; category = \$category; paramters = \$parameters } ;   \
+    \$codacyPatterns += [ordered] @{ patternId = \$patternId; level = \$level; category = \$category; parameters = \$parameters } ;   \
 }   \
-\$patternFormat = [ordered] @{ name = 'psscriptanalyzer'; patterns = \$codacyPatterns} ;\
+\$patternFormat = [ordered] @{ name = 'psscriptanalyzer'; version = '1.17.1'; patterns = \$codacyPatterns} ;\
 \$patternFormat | ConvertTo-Json -Depth 5 | Out-File /docs/patterns.json -Force -Encoding ascii; \
 \$newLine = [system.environment]::NewLine; \
 \$testFileContent = \"##Patterns: psavoidusingcmdletaliases\$newLine function TestFunc {\$newLine  ##Warn: psavoidusingcmdletaliases\$newLine  gps\$newLine}\"; \
@@ -30,7 +30,7 @@ WORKDIR /src
 
 CMD pwsh -c \
     "if (Test-Path '/.codacyrc') { \
-        \$config = Get-Content '/src/.codacy.json' -Raw | ConvertFrom-Json ; \
+        \$config = Get-Content '/.codacyrc' -Raw | ConvertFrom-Json ; \
         Write-Verbose \"ConfigFiles (\$(\$config.files.count)): \$(\$config.files)\" -Verbose; \
         \$files = \$config.files | ForEach-Object { Join-Path '/src' -ChildPath \$_ }; \
         \$rules = \$config.tools | Where-Object { \$_.name -eq 'psscriptanalyzer'} | ForEach-Object { \$_.patterns.patternId }; \
