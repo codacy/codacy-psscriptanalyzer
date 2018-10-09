@@ -10,15 +10,20 @@ RUN pwsh -c " \
 \$null = New-Item -Type Directory /docs -Force; \
 \$patterns = Get-ScriptAnalyzerRule | Where-Object { \$_.RuleName -ne 'PSUseDeclaredVarsMoreThanAssignments' } ;\
 \$codacyPatterns = @(); \
+\$codacyDescriptions = @(); \
 foreach(\$pat in \$patterns) { \
     \$patternId = \$pat.RuleName.ToLower() ;   \
+    \$description = \$pat.Description ;  \
     \$level = if(\$pat.Severity -eq 'Information') { 'Info' } else { \$pat.Severity.ToString() } ;   \
     \$category = if(\$level -eq 'Info') { 'CodeStyle' } else { 'ErrorProne' } ;  \
     \$parameters = @([ordered]@{name = \$patternId; default = 'vars'}) ; \
     \$codacyPatterns += [ordered] @{ patternId = \$patternId; level = \$level; category = \$category; parameters = \$parameters } ;   \
+    \$codacyDescriptions += [ordered] @{ patternId = \$patternId; title = \$patternId; description = \$description } ;  \
 }   \
 \$patternFormat = [ordered] @{ name = 'psscriptanalyzer'; version = '1.17.1'; patterns = \$codacyPatterns} ;\
 \$patternFormat | ConvertTo-Json -Depth 5 | Out-File /docs/patterns.json -Force -Encoding ascii; \
+New-Item -Type Directory /docs/description -Force | Out-Null ; \
+\$codacyDescriptions | ConvertTo-Json -Depth 5 | Out-File /docs/description/description.json -Force -Encoding ascii; \
 \$newLine = [system.environment]::NewLine; \
 \$testFileContent = \"##Patterns: psavoidusingcmdletaliases\$newLine function TestFunc {\$newLine  ##Warn: psavoidusingcmdletaliases\$newLine  gps\$newLine}\"; \
 New-Item -ItemType Directory /docs/tests -Force | Out-Null ;\
