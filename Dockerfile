@@ -22,7 +22,9 @@ foreach(\$pat in \$patterns) { \
 \$newLine = [system.environment]::NewLine; \
 \$testFileContent = \"##Patterns: psavoidusingcmdletaliases\$newLine function TestFunc {\$newLine  ##Warn: psavoidusingcmdletaliases\$newLine  gps\$newLine}\"; \
 New-Item -ItemType Directory /docs/tests -Force | Out-Null ;\
-\$testFileContent | Out-File /docs/tests/aliasTest.ps1 -Force"
+\$testFileContent | Out-File /docs/tests/aliasTest.ps1 -Force ;\
+\$testFileContent = \"##Patterns: psusecmdletcorrectly\$newLine##Warn: psusecmdletcorrectly\$newLine Write-Warning\$newLine Wrong-Cmd\$newLine Write-Verbose -Message 'Write Verbose'\$newLine Write-Verbose 'Warning' -OutVariable \`$"test"\$newLine Write-Verbose 'Warning' | PipeLineCmdlet\";\
+\$testFileContent | Out-File /docs/tests/useCmdletCorrectly.ps1 -Force;"
 
 RUN useradd -ms /bin/bash -u 2004 docker
 USER docker
