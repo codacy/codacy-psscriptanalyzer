@@ -6,13 +6,27 @@ LABEL maintainer="Aditya Patwardhan <adityap@microsoft.com>"
 
 RUN pwsh -c Install-Module PSScriptAnalyzer -RequiredVersion 1.17.1 -Force -Confirm:\$false
 
+RUN apt-get update && apt-get --no-install-recommends -y install git=1:2.7.4-0ubuntu1.5 && \
+ apt-get clean && \
+ rm -rf /var/lib/apt/lists/* && \
+ git clone https://github.com/PowerShell/PSScriptAnalyzer.git && \
+ apt-get -y remove git && \
+ apt autoremove -y
+
 RUN pwsh -c " \
 \$null = New-Item -Type Directory /docs -Force; \
 \$patterns = Get-ScriptAnalyzerRule | Where-Object { \$_.RuleName -ne 'PSUseDeclaredVarsMoreThanAssignments' } ;\
 \$codacyPatterns = @(); \
 \$codacyDescriptions = @(); \
+New-Item -Type Directory /docs/description -Force | Out-Null ; \
 foreach(\$pat in \$patterns) { \
     \$patternId = \$pat.RuleName.ToLower() ;   \
+    \$patternNameLowerCased = \$patternId.subString(2, \$patternId.Length-2) ; \
+    # could not use pat.RuleName for filename because of a mismatch in the uppercase 'W' in AvoidUsingUserNameAndPassWordParams
+    \$patternNameCamelCased = (ls /PSScriptAnalyzer/RuleDocumentation | grep -io \$patternNameLowerCased).split(\"\\n\")[0] ; \
+    \$originalPatternFileName = \$patternNameCamelCased + '.md' ; \
+    \$patternFileName = \$patternId + '.md' ; \
+    cp /PSScriptAnalyzer/RuleDocumentation/\$originalPatternFileName /docs/description/\$patternFileName ; \
     \$description = \$pat.Description ;  \
     \$level = if(\$pat.Severity -eq 'Information') { 'Info' } else { \$pat.Severity.ToString() } ;   \
     \$category = if(\$level -eq 'Info') { 'CodeStyle' } else { 'ErrorProne' } ;  \
@@ -22,7 +36,6 @@ foreach(\$pat in \$patterns) { \
 }   \
 \$patternFormat = [ordered] @{ name = 'psscriptanalyzer'; version = '1.17.1'; patterns = \$codacyPatterns} ;\
 \$patternFormat | ConvertTo-Json -Depth 5 | Out-File /docs/patterns.json -Force -Encoding ascii; \
-New-Item -Type Directory /docs/description -Force | Out-Null ; \
 \$codacyDescriptions | ConvertTo-Json -Depth 5 | Out-File /docs/description/description.json -Force -Encoding ascii; \
 \$newLine = [system.environment]::NewLine; \
 \$testFileContent = \"##Patterns: psavoidusingcmdletaliases\$newLine function TestFunc {\$newLine  ##Warn: psavoidusingcmdletaliases\$newLine  gps\$newLine}\"; \
@@ -30,6 +43,8 @@ New-Item -ItemType Directory /docs/tests -Force | Out-Null ;\
 \$testFileContent | Out-File /docs/tests/aliasTest.ps1 -Force ;\
 \$testFileContent = \"##Patterns: psusecmdletcorrectly\$newLine##Warn: psusecmdletcorrectly\$newLine Write-Warning\$newLine Wrong-Cmd\$newLine Write-Verbose -Message 'Write Verbose'\$newLine Write-Verbose 'Warning' -OutVariable \`$"test"\$newLine Write-Verbose 'Warning' | PipeLineCmdlet\";\
 \$testFileContent | Out-File /docs/tests/useCmdletCorrectly.ps1 -Force;"
+
+RUN rm -rf /PSScriptAnalyzer
 
 RUN useradd -ms /bin/bash -u 2004 docker
 USER docker
