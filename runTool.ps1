@@ -1,3 +1,5 @@
+#!/usr/bin/env powershell
+
 if (Test-Path '/.codacyrc') {
     $config = Get-Content '/.codacyrc' -Raw | ConvertFrom-Json ;
     $files = $config.files | ForEach-Object { Join-Path '/src' -ChildPath $_ };

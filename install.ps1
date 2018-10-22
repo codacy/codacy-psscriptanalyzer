@@ -1,3 +1,6 @@
+#!/usr/bin/env powershell
+
+$count = 0;
 function getTitleFromBestPracticesFile {
     $titleMatchRaw = cat /PSScriptAnalyzer/PowerShellBestPractices.md | grep $args[0] ;
     if($titleMatchRaw) { $titleMatchRaw.split('[')[0].SubString(2) } ;
@@ -5,22 +8,21 @@ function getTitleFromBestPracticesFile {
 
 function getTitleFromRuleFile {
     $patternNameCamelCased = $args[0] ;
-    #--- get title from finding rule files that have a name that matches part of a pattern name
-    foreach($file in (ls /PSScriptAnalyzer/Rules/).split('\n')) {
-        if($patternNameCamelCased.contains($file.split('.cs')[0])){
-            $ruleFileWithShortPatternName = '/PSScriptAnalyzer/Rules/' + $file;
-            $shortPatternName = $file.split('.cs')[0] ;
+    #--- get title from finding a rule file that has a name that matches part of a pattern name
+    foreach($file in Get-ChildItem /PSScriptAnalyzer/Rules/*) {
+        $fileNameWithoutExtension = $file.name.split('.cs')[0]
+        if($patternNameCamelCased.contains($fileNameWithoutExtension)){
+            $ruleFileWithShortPatternName = '/PSScriptAnalyzer/Rules/' + $file.name;
+            $shortPatternName = $fileNameWithoutExtension ;
         }
     } ;
-    $grepPatternShortName = '/// ' + $shortPatternName + ': ' ;
-    # the next instruction will sometimes output 'No such file or directory' from cat
-    $titleFromShortNameGrepResult = cat $ruleFileWithShortPatternName | grep "$grepPatternShortName" ;
+    $commentPattern = '[\/]\{3\} [a-zA-Z0-9]*[: ] [.?]*' ;
+    $titleFromShortNameGrepResult = if($ruleFileWithShortPatternName){ cat $ruleFileWithShortPatternName | grep "$commentPattern" };
     $titleFromShortNameMatch = if($titleFromShortNameGrepResult) { $titleFromShortNameGrepResult.split(':')[1].SubString(1).split('.')[0] } ;
-    #--- get title from finding rule files that have a name that matches full pattern name
+    #--- get title from finding a rule file that has a name that matches full pattern name
     $ruleFileWithFullPatternName = '/PSScriptAnalyzer/Rules/' + $patternNameCamelCased + '.cs' ;
-    $grepPatternFullName = '/// ' + $patternNameCamelCased + ': ' ;
-    # the next instruction will sometimes output 'No such file or directory' from cat
-    $titleFromFullNameGrepResult = cat $ruleFileWithFullPatternName | grep "$grepPatternFullName" ;
+    # the next instruction will output 'No such file or directory' from cat when this file does not exist
+    $titleFromFullNameGrepResult = cat $ruleFileWithFullPatternName | grep "$commentPattern" ;
     $titleFromFullNameMatch = if($titleFromFullNameGrepResult) { $titleFromFullNameGrepResult.split(':')[1].SubString(1).split('.')[0] } ;
     if($titleFromShortNameMatch) { $titleFromShortNameMatch } else { $titleFromFullNameMatch }
 }
@@ -28,16 +30,14 @@ function getTitleFromRuleFile {
 #resolve title by falling back from values retrieved from multiple sources
 function getTitle {
     $patternNameCamelCased = $args[0] ;
-    $titleMatchFromBestPractices = getTitleFromBestPracticesFile $patternNameCamelCased;
     $titleFromRulesFile = getTitleFromRuleFile $patternNameCamelCased;
+    $titleMatchFromBestPractices = getTitleFromBestPracticesFile $patternNameCamelCased;
     if($titleFromRulesFile) {
         $titleFromRulesFile ;
+    } elseif($titleMatchFromBestPractices) {
+        $titleMatchFromBestPractices ;
     } else {
-        if($titleMatchFromBestPractices) {
-            $titleMatchFromBestPractices ;
-        } else {
-            $patternNameCamelCased;
-        }
+        $patternNameCamelCased;
     };
 }
 
@@ -56,13 +56,14 @@ foreach($pat in $patterns) {
     $patternFileName = $patternId + '.md' ;
     cp /PSScriptAnalyzer/RuleDocumentation/$originalPatternFileName /docs/description/$patternFileName ;
     $title = getTitle $patternNameCamelCased ;
+    if($title -eq $patternNameCamelCased) { echo "$patternNameCamelCased"; $count = $count+1;}
     $description = $pat.Description ;
     $level = if($pat.Severity -eq 'Information') { 'Info' } else { $pat.Severity.ToString() } ;
     $category = if($level -eq 'Info') { 'CodeStyle' } else { 'ErrorProne' } ;
-    $parameters = @([ordered] @{name = $patternId; default = 'vars'}) ;
-    $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category; parameters = $parameters } ;
+    $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category } ;
     $codacyDescriptions += [ordered] @{ patternId = $patternId; title = $title; description = $description } ;
 }
+echo "UNMATCHED PATTERNS: $count";
 $patternFormat = [ordered] @{ name = 'psscriptanalyzer'; version = '1.17.1'; patterns = $codacyPatterns} ;
 $patternFormat | ConvertTo-Json -Depth 5 | Out-File /docs/patterns.json -Force -Encoding ascii;
 $codacyDescriptions | ConvertTo-Json -Depth 5 | Out-File /docs/description/description.json -Force -Encoding ascii;
