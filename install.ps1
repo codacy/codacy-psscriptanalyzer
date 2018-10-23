@@ -1,4 +1,4 @@
-#!/usr/bin/env powershell
+#!/usr/bin/env pwsh
 
 $count = 0;
 function getTitleFromBestPracticesFile {
@@ -56,14 +56,14 @@ foreach($pat in $patterns) {
     $patternFileName = $patternId + '.md' ;
     cp /PSScriptAnalyzer/RuleDocumentation/$originalPatternFileName /docs/description/$patternFileName ;
     $title = getTitle $patternNameCamelCased ;
-    if($title -eq $patternNameCamelCased) { echo "$patternNameCamelCased"; $count = $count+1;}
+    if($title -eq $patternNameCamelCased) { Write-Output "$patternNameCamelCased"; $count = $count+1;}
     $description = $pat.Description ;
     $level = if($pat.Severity -eq 'Information') { 'Info' } else { $pat.Severity.ToString() } ;
     $category = if($level -eq 'Info') { 'CodeStyle' } else { 'ErrorProne' } ;
     $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category } ;
     $codacyDescriptions += [ordered] @{ patternId = $patternId; title = $title; description = $description } ;
 }
-echo "UNMATCHED PATTERNS: $count";
+Write-Output "UNMATCHED PATTERNS: $count";
 $patternFormat = [ordered] @{ name = 'psscriptanalyzer'; version = '1.17.1'; patterns = $codacyPatterns} ;
 $patternFormat | ConvertTo-Json -Depth 5 | Out-File /docs/patterns.json -Force -Encoding ascii;
 $codacyDescriptions | ConvertTo-Json -Depth 5 | Out-File /docs/description/description.json -Force -Encoding ascii;

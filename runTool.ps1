@@ -1,4 +1,4 @@
-#!/usr/bin/env powershell
+#!/usr/bin/env pwsh
 
 if (Test-Path '/.codacyrc') {
     $config = Get-Content '/.codacyrc' -Raw | ConvertFrom-Json ;
