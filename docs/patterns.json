@@ -1,0 +1,291 @@
+{
+  "name": "psscriptanalyzer",
+  "version": "1.18.3",
+  "patterns": [
+    {
+      "patternId": "psalignassignmentstatement",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusingcmdletaliases",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidassignmenttoautomaticvariable",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoiddefaultvalueswitchparameter",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoiddefaultvalueformandatoryparameter",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusingemptycatchblock",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidglobalaliases",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidglobalfunctions",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidglobalvars",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidinvokingemptymembers",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidnulloremptyhelpmessageattribute",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusingpositionalparameters",
+      "level": "Info",
+      "category": "CodeStyle"
+    },
+    {
+      "patternId": "psreservedcmdletchar",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psreservedparams",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidshouldcontinuewithoutforce",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidtrailingwhitespace",
+      "level": "Info",
+      "category": "CodeStyle"
+    },
+    {
+      "patternId": "psavoidusingusernameandpasswordparams",
+      "level": "Error",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusingcomputernamehardcoded",
+      "level": "Error",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusingconverttosecurestringwithplaintext",
+      "level": "Error",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusingdeprecatedmanifestfields",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusinginvokeexpression",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusingplaintextforpassword",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusingwmicmdlet",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psavoidusingwritehost",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psusecompatiblecommands",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psusecompatiblesyntax",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psusecompatibletypes",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psmisleadingbacktick",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psmissingmodulemanifestfield",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psplaceclosebrace",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psplaceopenbrace",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "pspossibleincorrectcomparisonwithnull",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "pspossibleincorrectusageofassignmentoperator",
+      "level": "Info",
+      "category": "CodeStyle"
+    },
+    {
+      "patternId": "pspossibleincorrectusageofredirectionoperator",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psprovidecommenthelp",
+      "level": "Info",
+      "category": "CodeStyle"
+    },
+    {
+      "patternId": "psuseapprovedverbs",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psusebomforunicodeencodedfile",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psusecmdletcorrectly",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psusecompatiblecmdlets",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psuseconsistentindentation",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psuseconsistentwhitespace",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psusecorrectcasing",
+      "level": "Info",
+      "category": "CodeStyle"
+    },
+    {
+      "patternId": "psuseliteralinitializerforhashtable",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psuseoutputtypecorrectly",
+      "level": "Info",
+      "category": "CodeStyle"
+    },
+    {
+      "patternId": "psusepscredentialtype",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psshouldprocess",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psuseshouldprocessforstatechangingfunctions",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psusesupportsshouldprocess",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psusetoexportfieldsinmanifest",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psuseutf8encodingforhelpfile",
+      "level": "Warning",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psdscdscexamplespresent",
+      "level": "Info",
+      "category": "CodeStyle"
+    },
+    {
+      "patternId": "psdscdsctestspresent",
+      "level": "Info",
+      "category": "CodeStyle"
+    },
+    {
+      "patternId": "psdscreturncorrecttypesfordscfunctions",
+      "level": "Info",
+      "category": "CodeStyle"
+    },
+    {
+      "patternId": "psdscuseidenticalmandatoryparametersfordsc",
+      "level": "Error",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psdscuseidenticalparametersfordsc",
+      "level": "Error",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psdscstandarddscfunctionsinresource",
+      "level": "Error",
+      "category": "ErrorProne"
+    },
+    {
+      "patternId": "psdscuseverbosemessageindscresource",
+      "level": "Info",
+      "category": "CodeStyle"
+    }
+  ]
+}
