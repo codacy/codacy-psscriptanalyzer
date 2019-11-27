@@ -1,0 +1,287 @@
+[
+  {
+    "patternId": "psalignassignmentstatement",
+    "title": "Checks if consecutive assignment statements are aligned",
+    "description": "Line up assignment statements such that the assignment operator are aligned."
+  },
+  {
+    "patternId": "psavoidusingcmdletaliases",
+    "title": "Avoid using alias ",
+    "description": "An alias is an alternate name or nickname for a cmdlet or for a command element, such as a function, script, file, or executable file. An implicit alias is also the omission of the 'Get-' prefix for commands with this prefix. But when writing scripts that will potentially need to be maintained over time, either by the original author or another Windows PowerShell scripter, please consider using full cmdlet name instead of alias. Aliases can introduce these problems, readability, understandability and availability."
+  },
+  {
+    "patternId": "psavoidassignmenttoautomaticvariable",
+    "title": "Checks for assignment to automatic variables",
+    "description": "This automatic variables is built into PowerShell and readonly."
+  },
+  {
+    "patternId": "psavoiddefaultvalueswitchparameter",
+    "title": "Switch parameters should not default to true? ",
+    "description": "Switch parameter should not default to true."
+  },
+  {
+    "patternId": "psavoiddefaultvalueformandatoryparameter",
+    "title": "Check if a mandatory parameter does not have a default value",
+    "description": "Mandatory parameter should not be initialized with a default value in the param block because this value will be ignored.. To fix a violation of this rule, please avoid initializing a value for the mandatory parameter in the param block."
+  },
+  {
+    "patternId": "psavoidusingemptycatchblock",
+    "title": "Empty catch block should not be used ",
+    "description": "Empty catch blocks are considered poor design decisions because if an error occurs in the try block, this error is simply swallowed and not acted upon. While this does not inherently lead to bad things. It can and this should be avoided if possible. To fix a violation of this rule, using Write-Error or throw statements in catch blocks."
+  },
+  {
+    "patternId": "psavoidglobalaliases",
+    "title": "Checks that global aliases are not used",
+    "description": "Checks that global aliases are not used. Global aliases are strongly discouraged as they overwrite desired aliases with name conflicts."
+  },
+  {
+    "patternId": "psavoidglobalfunctions",
+    "title": "Checks that global functions are not used within modules",
+    "description": "Checks that global functions and aliases are not used. Global functions are strongly discouraged as they can cause errors across different systems."
+  },
+  {
+    "patternId": "psavoidglobalvars",
+    "title": "Analyzes the ast to check that global variables are not used",
+    "description": "Checks that global variables are not used. Global variables are strongly discouraged as they can cause errors across different systems."
+  },
+  {
+    "patternId": "psavoidinvokingemptymembers",
+    "title": "Analyzes the script to check if any non-constant members have been invoked",
+    "description": "Invoking non-constant members would cause potential bugs. Please double check the syntax to make sure members invoked are non-constant."
+  },
+  {
+    "patternId": "psavoidnulloremptyhelpmessageattribute",
+    "title": "Check if the HelpMessage parameter is set to a non-empty string",
+    "description": "Setting the HelpMessage attribute to an empty string or null value causes PowerShell interpreter to throw an error while executing the corresponding function."
+  },
+  {
+    "patternId": "psavoidusingpositionalparameters",
+    "title": "Positional parameters should be avoided ",
+    "description": "Readability and clarity should be the goal of any script we expect to maintain over time. When calling a command that takes parameters, where possible consider using name parameters as opposed to positional parameters. To fix a violation of this rule, please use named parameters instead of positional parameters when calling a command."
+  },
+  {
+    "patternId": "psreservedcmdletchar",
+    "title": "Cmdlets Names: Characters that cannot be Used ",
+    "description": "Checks for reserved characters in cmdlet names. These characters usually cause a parsing error. Otherwise they will generally cause runtime errors."
+  },
+  {
+    "patternId": "psreservedparams",
+    "title": "Parameter Names that cannot be Used ",
+    "description": "Checks for reserved parameters in function definitions. If these parameters are defined by the user, an error generally occurs."
+  },
+  {
+    "patternId": "psavoidshouldcontinuewithoutforce",
+    "title": "Check that if ShouldContinue is used,",
+    "description": "Functions that use ShouldContinue should have a boolean force parameter to allow user to bypass it."
+  },
+  {
+    "patternId": "psavoidtrailingwhitespace",
+    "title": "Checks for trailing whitespaces",
+    "description": "Each line should have no trailing whitespace."
+  },
+  {
+    "patternId": "psavoidusingusernameandpasswordparams",
+    "title": "Password = 'string' should not be used. (information disclosure) ",
+    "description": "Functions should take in a Credential parameter of type PSCredential (with a Credential transformation attribute defined after it in PowerShell 4.0 or earlier) or set the Password parameter to type SecureString."
+  },
+  {
+    "patternId": "psavoidusingcomputernamehardcoded",
+    "title": "Check that parameter ComputerName is not hardcoded",
+    "description": "The ComputerName parameter of a cmdlet should not be hardcoded as this will expose sensitive information about the system."
+  },
+  {
+    "patternId": "psavoidusingconverttosecurestringwithplaintext",
+    "title": "Check that convertto-securestring does not use plaintext",
+    "description": "Using ConvertTo-SecureString with plain text will expose secure information."
+  },
+  {
+    "patternId": "psavoidusingdeprecatedmanifestfields",
+    "title": "Run Test Module Manifest to check that no deprecated fields are being used",
+    "description": "\"ModuleToProcess\" is obsolete in the latest PowerShell version. Please update with the latest field \"RootModule\" in manifest files to avoid PowerShell version inconsistency."
+  },
+  {
+    "patternId": "psavoidusinginvokeexpression",
+    "title": "Check to make sure that Invoke-Expression is not used",
+    "description": "The Invoke-Expression cmdlet evaluates or runs a specified string as a command and returns the results of the expression or command. It can be extraordinarily powerful so it is not that you want to never use it but you need to be very careful about using it.  In particular, you are probably on safe ground if the data only comes from the program itself.  If you include any data provided from the user - you need to protect yourself from Code Injection. To fix a violation of this rule, please remove Invoke-Expression from script and find other options instead."
+  },
+  {
+    "patternId": "psavoidusingplaintextforpassword",
+    "title": "Check that parameter \"password\", \"passphrase\" do not use plaintext",
+    "description": "Password parameters that take in plaintext will expose passwords and compromise the security of your system."
+  },
+  {
+    "patternId": "psavoidusingwmicmdlet",
+    "title": "Avoid Using Get-WMIObject, Remove-WMIObject, Invoke-WmiMethod, Register-WmiEvent, Set-WmiInstance",
+    "description": "Deprecated. Starting in Windows PowerShell 3.0, these cmdlets have been superseded by CIM cmdlets."
+  },
+  {
+    "patternId": "psavoidusingwritehost",
+    "title": "Check that Write-Host or Console",
+    "description": "Avoid using the Write-Host cmdlet. Instead, use Write-Output, Write-Verbose, or Write-Information. Because Write-Host is host-specific, its implementation might vary unpredictably. Also, prior to PowerShell 5.0, Write-Host did not write to a stream, so users cannot suppress it, capture its value, or redirect it."
+  },
+  {
+    "patternId": "psusecompatiblecommands",
+    "title": "UseCompatibleCommands",
+    "description": "Use commands compatible with the given PowerShell version and operating system"
+  },
+  {
+    "patternId": "psusecompatiblesyntax",
+    "title": "UseCompatibleSyntax",
+    "description": "Use script syntax compatible with the given PowerShell versions"
+  },
+  {
+    "patternId": "psusecompatibletypes",
+    "title": "UseCompatibleTypes",
+    "description": "Use types compatible with the given PowerShell version and operating system"
+  },
+  {
+    "patternId": "psmisleadingbacktick",
+    "title": "Checks that lines don't end with a backtick followed by whitespace",
+    "description": "Ending a line with an escaped whitepsace character is misleading. A trailing backtick is usually used for line continuation. Users typically don't intend to end a line with escaped whitespace."
+  },
+  {
+    "patternId": "psmissingmodulemanifestfield",
+    "title": "Run Test Module Manifest to check that none of the required fields are missing",
+    "description": "Some fields of the module manifest (such as ModuleVersion) are required."
+  },
+  {
+    "patternId": "psplaceclosebrace",
+    "title": "Indicates if there should or should not be an empty line before a close brace",
+    "description": "Close brace should be on a new line by itself."
+  },
+  {
+    "patternId": "psplaceopenbrace",
+    "title": "PlaceOpenBrace",
+    "description": "Place open braces either on the same line as the preceding expression or on a new line."
+  },
+  {
+    "patternId": "pspossibleincorrectcomparisonwithnull",
+    "title": "Analyzes the ast to check that $null is on the left side of any equality comparisons",
+    "description": "Checks that $null is on the left side of any equaltiy comparisons (eq, ne, ceq, cne, ieq, ine). When there is an array on the left side of a null equality comparison, PowerShell will check for a $null IN the array rather than if the array is null. If the two sides of the comaprision are switched this is fixed. Therefore, $null should always be on the left side of equality comparisons just in case."
+  },
+  {
+    "patternId": "pspossibleincorrectusageofassignmentoperator",
+    "title": "Warn if someone uses '>', '=' or '==' operators inside an if, elseif, while and do-while statement because in most cases that is not the intention",
+    "description": "'=' or '==' are not comparison operators in the PowerShell language and rarely needed inside conditional statements."
+  },
+  {
+    "patternId": "pspossibleincorrectusageofredirectionoperator",
+    "title": "Warn if someone uses '>' or '>=' inside an if, elseif, while or do-while statement because in most cases that is not the intention",
+    "description": "When switching between different languages it is easy to forget that '>' does not mean 'great than' in PowerShell."
+  },
+  {
+    "patternId": "psprovidecommenthelp",
+    "title": "Analyzes ast to check that cmdlets have help",
+    "description": "Checks that all cmdlets have a help comment. This rule only checks existence. It does not check the content of the comment."
+  },
+  {
+    "patternId": "psuseapprovedverbs",
+    "title": "Analyzes scripts to check that all defined functions use approved verbs",
+    "description": "Checks that all defined cmdlets use approved verbs. This is in line with PowerShell's best practices."
+  },
+  {
+    "patternId": "psusebomforunicodeencodedfile",
+    "title": "Checks if a file with missing BOM is ASCII encoded",
+    "description": "For a file encoded with a format other than ASCII, ensure BOM is present to ensure that any application consuming this file can interpret it correctly."
+  },
+  {
+    "patternId": "psusecmdletcorrectly",
+    "title": "Check that cmdlets are invoked with the correct mandatory parameter",
+    "description": "Cmdlet should be called with the mandatory parameters."
+  },
+  {
+    "patternId": "psusecompatiblecmdlets",
+    "title": "Checks if a script uses Cmdlets compatible with a given version and edition of PowerShell",
+    "description": "Use cmdlets compatible with the given PowerShell version and edition and operating system"
+  },
+  {
+    "patternId": "psuseconsistentindentation",
+    "title": "Checks if indentation is consistent throughout the source file",
+    "description": "Each statement block should have a consistent indenation."
+  },
+  {
+    "patternId": "psuseconsistentwhitespace",
+    "title": "Checks if whitespace usage is consistent throughout the source file",
+    "description": "Check for whitespace between keyword and open paren/curly, around assigment operator ('='), around arithmetic operators and after separators (',' and ';')"
+  },
+  {
+    "patternId": "psusecorrectcasing",
+    "title": "Check if cmdlet is cased correctly",
+    "description": "For better readability and consistency, use the exact casing of the cmdlet/function."
+  },
+  {
+    "patternId": "psuseliteralinitializerforhashtable",
+    "title": "Checks if hashtable is not initialized using [hashtable]",
+    "description": "Use literal initializer, @{}, for creating a hashtable as they are case-insensitive by default"
+  },
+  {
+    "patternId": "psuseoutputtypecorrectly",
+    "title": "Checks that objects returned in a cmdlet have their types declared in OutputType Attribute",
+    "description": "The return types of a cmdlet should be declared using the OutputType attribute."
+  },
+  {
+    "patternId": "psusepscredentialtype",
+    "title": "Checks if a parameter named Credential is of type PSCredential",
+    "description": "For PowerShell 4.0 and earlier, a parameter named Credential with type PSCredential must have a credential transformation attribute defined after the PSCredential type attribute. "
+  },
+  {
+    "patternId": "psshouldprocess",
+    "title": "Support Confirmation Requests ",
+    "description": "Checks that if the SupportsShouldProcess is present, the function calls ShouldProcess/ShouldContinue and vice versa. Scripts with one or the other but not both will generally run into an error or unexpected behavior."
+  },
+  {
+    "patternId": "psuseshouldprocessforstatechangingfunctions",
+    "title": "Analyzes the ast to check if ShouldProcess is included in Advanced functions if the Verb of the function could change system state",
+    "description": "Functions that have verbs like New, Start, Stop, Set, Reset, Restart that change system state should support 'ShouldProcess'."
+  },
+  {
+    "patternId": "psusesupportsshouldprocess",
+    "title": "Checks if a function defines Confirm and/or WhatIf parameters manually instead of using SupportsShouldProcess attribute",
+    "description": "Commands typically provide Confirm and Whatif parameters to give more control on its execution in an interactive environment. In PowerShell, a command can use a SupportsShouldProcess attribute to provide this capability. Hence, manual addition of these parameters to a command is discouraged. If a commands need Confirm and Whatif parameters, then it should support ShouldProcess."
+  },
+  {
+    "patternId": "psusetoexportfieldsinmanifest",
+    "title": "Checks if AliasToExport, CmdletsToExport, FunctionsToExport and VariablesToExport ",
+    "description": "In a module manifest, AliasesToExport, CmdletsToExport, FunctionsToExport and VariablesToExport fields should not use wildcards or $null in their entries. During module auto-discovery, if any of these entries are missing or $null or wildcard, PowerShell does some potentially expensive work to analyze the rest of the module."
+  },
+  {
+    "patternId": "psuseutf8encodingforhelpfile",
+    "title": "Check if help file uses utf8 encoding",
+    "description": "PowerShell help file needs to use UTF8 Encoding."
+  },
+  {
+    "patternId": "psdscdscexamplespresent",
+    "title": "Checks that DSC examples for given resource are present",
+    "description": "Every DSC resource module should contain folder \"Examples\" with sample configurations for every resource. Sample configurations should have resource name they are demonstrating in the title."
+  },
+  {
+    "patternId": "psdscdsctestspresent",
+    "title": "Checks that DSC tests for given resource are present",
+    "description": "Every DSC resource module should contain folder \"Tests\" with tests for every resource. Test scripts should have resource name they are testing in the file name."
+  },
+  {
+    "patternId": "psdscreturncorrecttypesfordscfunctions",
+    "title": "Check that DSC functions return the correct type",
+    "description": "Set function in DSC class and Set-TargetResource in DSC resource must not return anything. Get function in DSC class must return an instance of the DSC class and Get-TargetResource function in DSC resource must return a hashtable. Test function in DSC class and Get-TargetResource function in DSC resource must return a boolean."
+  },
+  {
+    "patternId": "psdscuseidenticalmandatoryparametersfordsc",
+    "title": "DSCUseIdenticalMandatoryParametersForDSC",
+    "description": "The Get/Test/Set TargetResource functions of DSC resource must have the same mandatory parameters."
+  },
+  {
+    "patternId": "psdscuseidenticalparametersfordsc",
+    "title": "DSCUseIdenticalParametersForDSC",
+    "description": "The Test and Set-TargetResource functions of DSC Resource must have the same parameters."
+  },
+  {
+    "patternId": "psdscstandarddscfunctionsinresource",
+    "title": "DSCStandardDSCFunctionsInResource",
+    "description": "DSC Resource must implement Get, Set and Test-TargetResource functions. DSC Class must implement Get, Set and Test functions."
+  },
+  {
+    "patternId": "psdscuseverbosemessageindscresource",
+    "title": "Analyzes the ast to check that Write-Verbose is called for DSC Resources",
+    "description": "It is a best practice to emit informative, verbose messages in DSC resource functions. This helps in debugging issues when a DSC configuration is executed."
+  }
+]
