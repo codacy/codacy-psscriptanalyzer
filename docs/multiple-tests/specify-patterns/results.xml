@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<checkstyle version="1.5">
+    <file name="example.ps1">
+        <error source="psavoidtrailingwhitespace" line="64" message="Line has trailing whitespace" severity="info" />
+    </file>
+</checkstyle>
