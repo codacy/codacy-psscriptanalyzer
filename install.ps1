@@ -1,4 +1,8 @@
 #!/usr/bin/env pwsh
+$visibilityRules = 'psavoidusingcomputernamehardcoded' ;
+$cryptoRules = 'psavoidusingconverttosecurestringwithplaintext', 'psavoidusingplaintextforpassword', 'psusepscredentialtype' ;
+$commandInjectionRules = 'psavoidusinginvokeexpression' ;
+$authRules = 'psavoidusingusernameandpasswordparams' ;
 
 $count = 0;
 function getTitleFromBestPracticesFile {
@@ -41,6 +45,34 @@ function getTitle {
     };
 }
 
+# get pattern category
+function getCategory {
+    $level = $args[0]
+    $patternId = $args[1]
+
+    $subcategory = getSecuritySubcategory $patternId
+    if($subcategory -ne '') { 
+        @{ category='Security'; subcategory=$subcategory } ;
+    }elseif($level -eq 'Info') { 
+        @{ category='CodeStyle' } ;
+    } else { 
+        @{ category='ErrorProne' } ;
+    };
+}
+
+# get security subcategory for pattern id
+function getSecuritySubcategory {
+    $patternId = $args[0]
+    
+    switch ($patternId) {
+        {$visibilityRules -contains $_} { 'Visibility' }
+        {$cryptoRules -contains $_} {'Cryptography'}
+        {$commandInjectionRules -contains $_} {'CommandInjection'}
+        {$authRules -contains $_} {'Auth'}
+        default {''}
+    }
+}
+
 $null = New-Item -Type Directory docs -Force ;
 $patterns = Get-ScriptAnalyzerRule | Where-Object { $_.RuleName -ne 'PSUseDeclaredVarsMoreThanAssignments' } ;
 $patternsLength = $patterns.Length ;
@@ -59,8 +91,12 @@ foreach($pat in $patterns) {
     if($title -eq $patternNameCamelCased) { Write-Output "$patternNameCamelCased"; $count = $count+1;}
     $description = $pat.Description ;
     $level = if($pat.Severity -eq 'Information') { 'Info' } else { $pat.Severity.ToString() } ;
-    $category = if($level -eq 'Info') { 'CodeStyle' } else { 'ErrorProne' } ;
-    $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category } ;
+    $category = getCategory $level $patternId;
+    if($category.ContainsKey('subcategory')) {
+        $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category.category; subcategory = $category.subcategory } ;
+    } else {
+        $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category.category } ;
+    }
     $codacyDescriptions += [ordered] @{ patternId = $patternId; title = $title; description = $description } ;
 }
 Write-Output "UNMATCHED PATTERNS: $count";
