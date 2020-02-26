@@ -85,17 +85,20 @@
     {
       "patternId": "psavoidusingusernameandpasswordparams",
       "level": "Error",
-      "category": "ErrorProne"
+      "category": "Security",
+      "subcategory": "Auth"
     },
     {
       "patternId": "psavoidusingcomputernamehardcoded",
       "level": "Error",
-      "category": "ErrorProne"
+      "category": "Security",
+      "subcategory": "Visibility"
     },
     {
       "patternId": "psavoidusingconverttosecurestringwithplaintext",
       "level": "Error",
-      "category": "ErrorProne"
+      "category": "Security",
+      "subcategory": "Cryptography"
     },
     {
       "patternId": "psavoidusingdeprecatedmanifestfields",
@@ -105,12 +108,14 @@
     {
       "patternId": "psavoidusinginvokeexpression",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "Security",
+      "subcategory": "CommandInjection"
     },
     {
       "patternId": "psavoidusingplaintextforpassword",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "Security",
+      "subcategory": "Cryptography"
     },
     {
       "patternId": "psavoidusingwmicmdlet",
@@ -225,7 +230,8 @@
     {
       "patternId": "psusepscredentialtype",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "Security",
+      "subcategory": "Cryptography"
     },
     {
       "patternId": "psshouldprocess",
