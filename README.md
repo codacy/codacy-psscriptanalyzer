@@ -1,6 +1,6 @@
 # Codacy-Psscriptanalyzer Docker Container
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c5d062c19785439980803f4557f9e441)](https://www.codacy.com/app/Codacy/codacy-psscriptanalyzer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codacy/codacy-psscriptanalyzer&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8a05c207b252459fb5caef7d9dc922c0)](https://www.codacy.com/gh/codacy/codacy-psscriptanalyzer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=codacy/codacy-psscriptanalyzer&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://circleci.com/gh/codacy/codacy-psscriptanalyzer.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/codacy/codacy-psscriptanalyzer)
 [![Docker Version](https://images.microbadger.com/badges/version/codacy/codacy-psscriptanalyzer.svg)](https://microbadger.com/images/codacy/codacy-psscriptanalyzer "Get your own version badge on microbadger.com")
 
