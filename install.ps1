@@ -3,6 +3,53 @@ $visibilityRules = 'psavoidusingcomputernamehardcoded' ;
 $cryptoRules = 'psavoidusingconverttosecurestringwithplaintext', 'psavoidusingplaintextforpassword', 'psusepscredentialtype' ;
 $commandInjectionRules = 'psavoidusinginvokeexpression' ;
 $authRules = 'psavoidusingusernameandpasswordparams' ;
+$enabledRules = @(
+    "psalignassignmentstatement",
+    "psavoidassignmenttoautomaticvariable",
+    "psavoiddefaultvalueformandatoryparameter",
+    "psavoiddefaultvalueswitchparameter",
+    "psavoidglobalaliases",
+    "psavoidglobalfunctions",
+    "psavoidglobalvars",
+    "psavoidinvokingemptymembers",
+    "psavoidshouldcontinuewithoutforce",
+    "psavoidusingcomputernamehardcoded",
+    "psavoidusingconverttosecurestringwithplaintext",
+    "psavoidusingdeprecatedmanifestfields",
+    "psavoidusingemptycatchblock",
+    "psavoidusinginvokeexpression",
+    "psavoidusingplaintextforpassword",
+    "psavoidusingpositionalparameters",
+    "psavoidusingusernameandpasswordparams",
+    "psavoidusingwmicmdlet",
+    "psavoidusingwritehost",
+    "psdscdscexamplespresent",
+    "psdscdsctestspresent",
+    "psdscreturncorrecttypesfordscfunctions",
+    "psdscstandarddscfunctionsinresource",
+    "psdscuseidenticalmandatoryparametersfordsc",
+    "psdscuseidenticalparametersfordsc",
+    "psmisleadingbacktick",
+    "psmissingmodulemanifestfield",
+    "psplaceclosebrace",
+    "psplaceopenbrace",
+    "pspossibleincorrectcomparisonwithnull",
+    "pspossibleincorrectusageofassignmentoperator",
+    "pspossibleincorrectusageofredirectionoperator",
+    "psreservedcmdletchar",
+    "psreservedparams",
+    "psshouldprocess",
+    "psuseapprovedverbs",
+    "psusebomforunicodeencodedfile",
+    "psusecmdletcorrectly",
+    "psusecompatiblecmdlets",
+    "psuseliteralinitializerforhashtable",
+    "psuseoutputtypecorrectly",
+    "psusepscredentialtype",
+    "psuseshouldprocessforstatechangingfunctions",
+    "psusesupportsshouldprocess",
+    "psusetoexportfieldsinmanifest"
+)
 
 $count = 0;
 function getTitleFromBestPracticesFile {
@@ -92,10 +139,11 @@ foreach($pat in $patterns) {
     $description = $pat.Description ;
     $level = if($pat.Severity -eq 'Information') { 'Info' } else { $pat.Severity.ToString() } ;
     $category = getCategory $level $patternId;
+    $enabledByDefault = $enabledRules -contains $patternId
     if($category.ContainsKey('subcategory')) {
-        $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category.category; subcategory = $category.subcategory } ;
+        $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category.category; subcategory = $category.subcategory; enabled = $enabledByDefault } ;
     } else {
-        $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category.category } ;
+        $codacyPatterns += [ordered] @{ patternId = $patternId; level = $level; category = $category.category; enabled = $enabledByDefault } ;
     }
     $codacyDescriptions += [ordered] @{ patternId = $patternId; title = $title; description = $description } ;
 }
