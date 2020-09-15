@@ -5,293 +5,350 @@
     {
       "patternId": "psalignassignmentstatement",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidusingcmdletaliases",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psavoidassignmenttoautomaticvariable",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoiddefaultvalueswitchparameter",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoiddefaultvalueformandatoryparameter",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidusingemptycatchblock",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidglobalaliases",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidglobalfunctions",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidglobalvars",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidinvokingemptymembers",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidnulloremptyhelpmessageattribute",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psavoidusingpositionalparameters",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": true
     },
     {
       "patternId": "psreservedcmdletchar",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psreservedparams",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidshouldcontinuewithoutforce",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidtrailingwhitespace",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": false
     },
     {
       "patternId": "psavoidusingusernameandpasswordparams",
       "level": "Error",
       "category": "Security",
-      "subcategory": "Auth"
+      "subcategory": "Auth",
+      "enabled": true
     },
     {
       "patternId": "psavoidusingcomputernamehardcoded",
       "level": "Error",
       "category": "Security",
-      "subcategory": "Visibility"
+      "subcategory": "Visibility",
+      "enabled": true
     },
     {
       "patternId": "psavoidusingconverttosecurestringwithplaintext",
       "level": "Error",
       "category": "Security",
-      "subcategory": "Cryptography"
+      "subcategory": "Cryptography",
+      "enabled": true
     },
     {
       "patternId": "psavoidusingdeprecatedmanifestfields",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidusinginvokeexpression",
       "level": "Warning",
       "category": "Security",
-      "subcategory": "CommandInjection"
+      "subcategory": "CommandInjection",
+      "enabled": true
     },
     {
       "patternId": "psavoidusingplaintextforpassword",
       "level": "Warning",
       "category": "Security",
-      "subcategory": "Cryptography"
+      "subcategory": "Cryptography",
+      "enabled": true
     },
     {
       "patternId": "psavoidusingwmicmdlet",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psavoidusingwritehost",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psusecompatiblecommands",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psusecompatiblesyntax",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psusecompatibletypes",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psmisleadingbacktick",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psmissingmodulemanifestfield",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psplaceclosebrace",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psplaceopenbrace",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "pspossibleincorrectcomparisonwithnull",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "pspossibleincorrectusageofassignmentoperator",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": true
     },
     {
       "patternId": "pspossibleincorrectusageofredirectionoperator",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psprovidecommenthelp",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": false
     },
     {
       "patternId": "psuseapprovedverbs",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psusebomforunicodeencodedfile",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psusecmdletcorrectly",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psusecompatiblecmdlets",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psuseconsistentindentation",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psuseconsistentwhitespace",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psusecorrectcasing",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": false
     },
     {
       "patternId": "psuseliteralinitializerforhashtable",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psuseoutputtypecorrectly",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": true
     },
     {
       "patternId": "psusepscredentialtype",
       "level": "Warning",
       "category": "Security",
-      "subcategory": "Cryptography"
+      "subcategory": "Cryptography",
+      "enabled": true
     },
     {
       "patternId": "psshouldprocess",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psuseshouldprocessforstatechangingfunctions",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psusesupportsshouldprocess",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psusetoexportfieldsinmanifest",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psuseutf8encodingforhelpfile",
       "level": "Warning",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psdscdscexamplespresent",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": true
     },
     {
       "patternId": "psdscdsctestspresent",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": true
     },
     {
       "patternId": "psdscreturncorrecttypesfordscfunctions",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": true
     },
     {
       "patternId": "psdscuseidenticalmandatoryparametersfordsc",
       "level": "Error",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psdscuseidenticalparametersfordsc",
       "level": "Error",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psdscstandarddscfunctionsinresource",
       "level": "Error",
-      "category": "ErrorProne"
+      "category": "ErrorProne",
+      "enabled": true
     },
     {
       "patternId": "psdscuseverbosemessageindscresource",
       "level": "Info",
-      "category": "CodeStyle"
+      "category": "CodeStyle",
+      "enabled": false
     }
   ]
 }
