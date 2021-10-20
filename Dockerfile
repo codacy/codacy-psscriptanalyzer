@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/powershell:6.2.3-ubuntu-18.04
+FROM mcr.microsoft.com/powershell:7.1.5-ubuntu-20.04
 LABEL maintainer="Aditya Patwardhan <adityap@microsoft.com>"
 COPY docs /docs
 COPY runTool.ps1 /runTool.ps1
