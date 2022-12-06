@@ -23,7 +23,7 @@ workflows:
           run_multiple_tests: true
           requires:
             - publish_docker_local
-      - codacy/sbt:
+      - codacy/shell:
           name: publish_dockerhub
           context: CodacyDocker
           cmd: |
