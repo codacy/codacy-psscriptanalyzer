@@ -52,11 +52,6 @@ $enabledRules = @(
 )
 
 $count = 0;
-function getTitleFromBestPracticesFile {
-    $titleMatchRaw = cat PSScriptAnalyzer/PowerShellBestPractices.md | grep $args[0] ;
-    if($titleMatchRaw) { $titleMatchRaw.split('[')[0].SubString(2) } ;
-}
-
 function getTitleFromRuleFile {
     $patternNameCamelCased = $args[0] ;
     #--- get title from finding a rule file that has a name that matches part of a pattern name
@@ -64,12 +59,12 @@ function getTitleFromRuleFile {
         $fileNameWithoutExtension = $file.name.split('.cs')[0]
         if($patternNameCamelCased.contains($fileNameWithoutExtension)){
             $ruleFileWithShortPatternName = 'PSScriptAnalyzer/Rules/' + $file.name;
-            $shortPatternName = $fileNameWithoutExtension ;
         }
     } ;
     $commentPattern = '[\/]\{3\} [a-zA-Z0-9]*[: ] [.?]*' ;
     $titleFromShortNameGrepResult = if($ruleFileWithShortPatternName){ cat $ruleFileWithShortPatternName | grep "$commentPattern" };
     $titleFromShortNameMatch = if($titleFromShortNameGrepResult) { $titleFromShortNameGrepResult.split(':')[1].SubString(1).split('.')[0] } ;
+    
     #--- get title from finding a rule file that has a name that matches full pattern name
     $ruleFileWithFullPatternName = 'PSScriptAnalyzer/Rules/' + $patternNameCamelCased + '.cs' ;
     # the next instruction will output 'No such file or directory' from cat when this file does not exist
@@ -82,11 +77,8 @@ function getTitleFromRuleFile {
 function getTitle {
     $patternNameCamelCased = $args[0] ;
     $titleFromRulesFile = getTitleFromRuleFile $patternNameCamelCased;
-    $titleMatchFromBestPractices = getTitleFromBestPracticesFile $patternNameCamelCased;
     if($titleFromRulesFile) {
         $titleFromRulesFile ;
-    } elseif($titleMatchFromBestPractices) {
-        $titleMatchFromBestPractices ;
     } else {
         $patternNameCamelCased;
     };
@@ -122,7 +114,6 @@ function getSecuritySubcategory {
 
 $null = New-Item -Type Directory docs -Force ;
 $patterns = Get-ScriptAnalyzerRule | Where-Object { $_.RuleName -ne 'PSUseDeclaredVarsMoreThanAssignments' } ;
-$patternsLength = $patterns.Length ;
 $codacyPatterns = @() ;
 $codacyDescriptions = @();
 New-Item -Type Directory docs/description -Force | Out-Null ;
@@ -130,10 +121,10 @@ foreach($pat in $patterns) {
     $patternId = $pat.RuleName.ToLower() ;
     $patternNameLowerCased = $patternId.SubString(2) ;
     # could not use pat.RuleName for filename because of a mismatch in the uppercase 'W' in AvoidUsingUserNameAndPassWordParams
-    $patternNameCamelCased = (ls PSScriptAnalyzer/RuleDocumentation | grep -io $patternNameLowerCased).split("\n")[0] ;
+    $patternNameCamelCased = (ls PSScriptAnalyzer/docs/Rules | grep -io $patternNameLowerCased).split("\n")[0] ;
     $originalPatternFileName = $patternNameCamelCased + '.md' ;
     $patternFileName = $patternId + '.md' ;
-    cp PSScriptAnalyzer/RuleDocumentation/$originalPatternFileName docs/description/$patternFileName ;
+    cp PSScriptAnalyzer/docs/Rules/$originalPatternFileName docs/description/$patternFileName ;
     $title = getTitle $patternNameCamelCased ;
     if($title -eq $patternNameCamelCased) { Write-Output "$patternNameCamelCased"; $count = $count+1;}
     $description = $pat.Description ;
@@ -152,4 +143,3 @@ $toolVersion = cat psscriptanalyzer.version | tr -d '\n';
 $patternFormat = [ordered] @{ name = 'psscriptanalyzer'; version = $toolVersion; patterns = $codacyPatterns} ;
 $patternFormat | ConvertTo-Json -Depth 5 | Out-File docs/patterns.json -Force -Encoding ascii;
 $codacyDescriptions | ConvertTo-Json -Depth 5 | Out-File docs/description/description.json -Force -Encoding ascii;
-$newLine = [system.environment]::NewLine;

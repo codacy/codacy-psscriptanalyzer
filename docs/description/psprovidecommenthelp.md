@@ -1,12 +1,25 @@
+---
+description: Basic Comment Help
+ms.custom: PSSA v1.21.0
+ms.date: 10/18/2021
+ms.topic: reference
+title: ProvideCommentHelp
+---
 # ProvideCommentHelp
 
 **Severity Level: Info**
 
 ## Description
 
-Comment based help should be provided for all PowerShell commands. This test only checks for the presence of comment based help and not on the validity or format.
+Comment based help should be provided for all PowerShell commands. This test only checks for the
+presence of comment based help and not on the validity or format.
 
-For assistance on comment based help, use the command ```Get-Help about_comment_based_help``` or the article, "How to Write Cmdlet Help" (https://go.microsoft.com/fwlink/?LinkID=123415).
+For assistance on comment based help, use the command `Get-Help about_comment_based_help` or the
+following articles:
+
+- [Writing Comment-based Help](https://learn.microsoft.com/powershell/scripting/developer/help/writing-comment-based-help-topics)
+- [Writing Help for PowerShell Cmdlets](https://learn.microsoft.com/powershell/scripting/developer/help/writing-help-for-windows-powershell-cmdlets)
+- [Create XML-based help using PlatyPS](https://learn.microsoft.com/powershell/utility-modules/platyps/create-help-using-platyps)
 
 ## Configuration
 
@@ -30,12 +43,13 @@ Enable or disable the rule during ScriptAnalyzer invocation.
 
 #### ExportedOnly: bool (Default value is `$true`)
 
-If enabled, throw violation only on functions/cmdlets that are exported using the 'Export-ModuleMember' cmdlet.
+If enabled, throw violation only on functions/cmdlets that are exported using the
+`Export-ModuleMember` cmdlet.
 
 #### BlockComment: bool (Default value is `$true`)
 
-If enabled, returns comment help in block comment style, i.e., `<#...#>`. Otherwise returns
-comment help in line comment style, i.e., each comment line starts with `#`.
+If enabled, returns comment help in block comment style, i.e., `<#...#>`. Otherwise returns comment
+help in line comment style, i.e., each comment line starts with `#`.
 
 #### VSCodeSnippetCorrection: bool (Default value is `$false`)
 
@@ -45,18 +59,18 @@ If enabled, returns comment help in vscode snippet format.
 
 Represents the position of comment help with respect to the function definition.
 
-Possible values are: `before`, `begin` and `end`. If any invalid value is given, the
-property defaults to `before`.
+Possible values are: `before`, `begin` and `end`. If any invalid value is given, the property
+defaults to `before`.
 
-`before` means the help is placed before the function definition.
-`begin` means the help is placed at the begining of the function definition body.
-`end` means the help is places the end of the function definition body.
+`before` means the help is placed before the function definition. `begin` means the help is placed
+at the beginning of the function definition body. `end` means the help is places the end of the
+function definition body.
 
 ## Example
 
 ### Wrong
 
-``` PowerShell
+```powershell
 function Get-File
 {
     [CmdletBinding()]
@@ -70,7 +84,7 @@ function Get-File
 
 ### Correct
 
-``` PowerShell
+```powershell
 <#
 .Synopsis
     Short description

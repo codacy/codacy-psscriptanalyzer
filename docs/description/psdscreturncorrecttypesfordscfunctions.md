@@ -1,3 +1,10 @@
+---
+description: Return Correct Types For DSC Functions
+ms.custom: PSSA v1.21.0
+ms.date: 10/18/2021
+ms.topic: reference
+title: DSCReturnCorrectTypesForDSCFunctions
+---
 # ReturnCorrectTypesForDSCFunctions
 
 **Severity Level: Information**
@@ -7,24 +14,26 @@
 The functions in DSC resources have specific return objects.
 
 For non-class based resources:
-* `Set-TargetResource` must not return any value.
-* `Test-TargetResource` must return a boolean.
-* `Get-TargetResource` must return a hash table.
+
+- `Set-TargetResource` must not return any value.
+- `Test-TargetResource` must return a boolean.
+- `Get-TargetResource` must return a hash table.
 
 For class based resources:
-* `Set` must not return any value.
-* `Test` must return a boolean.
-* `Get` must return an instance of the DSC class.
+
+- `Set` must not return any value.
+- `Test` must return a boolean.
+- `Get` must return an instance of the DSC class.
 
 ## How
 
 Ensure that each function returns the correct type.
 
-## Example
+## Example 1
 
 ### Wrong
 
-``` PowerShell
+```powershell
 function Get-TargetResource
 {
     param
@@ -61,7 +70,7 @@ function Test-TargetResource
 
 ### Correct
 
-``` PowerShell
+```powershell
 function Get-TargetResource
 {
     [OutputType([Hashtable])]
@@ -98,11 +107,11 @@ function Test-TargetResource
 }
 ```
 
-## Example
+## Example 2
 
 ### Wrong
 
-``` PowerShell
+```powershell
 [DscResource()]
 class MyDSCResource
 {
@@ -128,7 +137,7 @@ class MyDSCResource
 
 ### Correct
 
-``` PowerShell
+```powershell
 [DscResource()]
 class MyDSCResource
 {

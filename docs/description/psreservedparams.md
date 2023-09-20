@@ -1,3 +1,10 @@
+---
+description: Reserved Parameters
+ms.custom: PSSA v1.21.0
+ms.date: 10/18/2021
+ms.topic: reference
+title: ReservedParams
+---
 # ReservedParams
 
 **Severity Level: Error**
@@ -14,7 +21,7 @@ Change the name of the parameter.
 
 ### Wrong
 
-``` PowerShell
+```powershell
 function Test
 {
     [CmdletBinding]
@@ -28,7 +35,7 @@ function Test
 
 ### Correct
 
-``` PowerShell
+```powershell
 function Test
 {
     [CmdletBinding]

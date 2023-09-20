@@ -1,3 +1,10 @@
+---
+description: Switch Parameters Should Not Default To True
+ms.custom: PSSA v1.21.0
+ms.date: 10/18/2021
+ms.topic: reference
+title: AvoidDefaultValueSwitchParameter
+---
 # AvoidDefaultValueSwitchParameter
 
 **Severity Level: Warning**
@@ -14,7 +21,7 @@ Change the default value of the switch parameter to be false.
 
 ### Wrong
 
-``` PowerShell
+```powershell
 function Test-Script
 {
     [CmdletBinding()]
@@ -32,7 +39,7 @@ function Test-Script
 
 ### Correct
 
-``` PowerShell
+```powershell
 function Test-Script
 {
     [CmdletBinding()]

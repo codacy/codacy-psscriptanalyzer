@@ -1,51 +1,59 @@
+---
+description: Avoid Using ComputerName Hardcoded
+ms.custom: PSSA v1.21.0
+ms.date: 10/18/2021
+ms.topic: reference
+title: AvoidUsingComputerNameHardcoded
+---
 # AvoidUsingComputerNameHardcoded
 
 **Severity Level: Error**
 
 ## Description
 
-The names of computers should never be hard coded as this will expose sensitive information. The `ComputerName` parameter should never have a hard coded value.
+The names of computers should never be hard coded as this will expose sensitive information. The
+`ComputerName` parameter should never have a hard coded value.
 
 ## How
 
 Remove hard coded computer names.
 
-## Example
+## Example 1
 
 ### Wrong
 
-``` PowerShell
+```powershell
 Function Invoke-MyRemoteCommand ()
 {
-	Invoke-Command -Port 343 -ComputerName "hardcoderemotehostname"
+    Invoke-Command -Port 343 -ComputerName "hardcoderemotehostname"
 }
 ```
 
 ### Correct
 
-``` PowerShell
+```powershell
 Function Invoke-MyCommand ($ComputerName)
 {
-	Invoke-Command -Port 343 -ComputerName $ComputerName
+    Invoke-Command -Port 343 -ComputerName $ComputerName
 }
 ```
 
-## Example
+## Example 2
 
 ### Wrong
 
-``` PowerShell
+```powershell
 Function Invoke-MyLocalCommand ()
 {
-	Invoke-Command -Port 343 -ComputerName "hardcodelocalhostname"
+    Invoke-Command -Port 343 -ComputerName "hardcodelocalhostname"
 }
 ```
 
 ### Correct
 
-``` PowerShell
+```powershell
 Function Invoke-MyLocalCommand ()
 {
-	Invoke-Command -Port 343 -ComputerName $env:COMPUTERNAME
+    Invoke-Command -Port 343 -ComputerName $env:COMPUTERNAME
 }
 ```
