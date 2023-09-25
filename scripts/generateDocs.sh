@@ -11,6 +11,7 @@ rm -rf PSScriptAnalyzer/
 mkdir -p "$RESOURCES_DIR"
 if [ ! -f "$RESOURCES_DIR/$FILE" ]; then
 	wget -O "$RESOURCES_DIR/$FILE" "https://github.com/PowerShell/PSScriptAnalyzer/archive/$FILE"
+	                            
 fi
 tar -zxvf "$RESOURCES_DIR/$FILE"
 mv "PSScriptAnalyzer-$VERSION" PSScriptAnalyzer

@@ -1,14 +1,23 @@
+---
+description: Module Manifest Fields
+ms.custom: PSSA v1.21.0
+ms.date: 10/18/2021
+ms.topic: reference
+title: MissingModuleManifestField
+---
 # MissingModuleManifestField
 
 **Severity Level: Warning**
 
 ## Description
 
-A module manifest is a `.psd1` file that contains a hash table. The keys and values in the hash table describe the contents and attributes of the module, define the
-prerequisites, and determine how the components are processed.
+A module manifest is a `.psd1` file that contains a hash table. The keys and values in the hash
+table describe the contents and attributes of the module, define the prerequisites, and determine
+how the components are processed.
 
 Module manifests must contain the following keys (and a corresponding value) to be considered valid:
-* `ModuleVersion`
+
+- `ModuleVersion`
 
 All other keys are optional. The order of the entries is not important.
 
@@ -20,7 +29,7 @@ Please consider adding the missing fields to the manifest.
 
 ### Wrong
 
-``` PowerShell
+```powershell
 @{
     Author              = 'PowerShell Author'
     NestedModules       = @('.\mymodule.psm1')
@@ -32,7 +41,7 @@ Please consider adding the missing fields to the manifest.
 
 ### Correct
 
-``` PowerShell
+```powershell
 @{
     ModuleVersion       = '1.0'
     Author              = 'PowerShell Author'

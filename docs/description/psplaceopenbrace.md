@@ -1,24 +1,32 @@
+---
+description: Place open braces consistently
+ms.custom: PSSA v1.21.0
+ms.date: 10/18/2021
+ms.topic: reference
+title: PlaceOpenBrace
+---
 # PlaceOpenBrace
 
 **Severity Level: Warning**
 
 ## Description
 
-Open brace placement should follow a consistent style. It can either follow KR style (on same line) or the Allman style (not on same line).
+Open brace placement should follow a consistent style. It can either follow K&R style (on same line)
+or the Allman style (not on same line).
 
 **Note**: This rule is not enabled by default. The user needs to enable it through settings.
 
 ## Configuration
 
 ```powershell
-    Rules = @{
-        PSPlaceOpenBrace = @{
-            Enable = $true
-            OnSameLine = $true
-            NewLineAfter = $true
-            IgnoreOneLineBlock = $true
-        }
+Rules = @{
+    PSPlaceOpenBrace = @{
+        Enable = $true
+        OnSameLine = $true
+        NewLineAfter = $true
+        IgnoreOneLineBlock = $true
     }
+}
 ```
 
 ### Parameters
@@ -37,6 +45,6 @@ Enforce a new line character after an open brace. The default value is true.
 
 #### IgnoreOneLineBlock: bool (Default value is `$true`)
 
-Indicates if open braces in a one line block should be ignored or not.
-E.g. $x = if ($true) { "blah" } else { "blah blah" }
-In the above example, if the property is set to true then the rule will not fire a violation.
+Indicates if open braces in a one line block should be ignored or not. For example,
+` $x = if ($true) { "blah" } else { "blah blah" }`, if the property is set to true then the rule
+doesn't fire a violation.

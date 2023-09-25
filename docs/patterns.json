@@ -1,6 +1,6 @@
 {
   "name": "psscriptanalyzer",
-  "version": "1.18.3",
+  "version": "1.21.0",
   "patterns": [
     {
       "patternId": "psalignassignmentstatement",
@@ -63,7 +63,25 @@
       "enabled": true
     },
     {
+      "patternId": "psavoidlonglines",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
+      "patternId": "psavoidmultipletypeattributes",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
       "patternId": "psavoidnulloremptyhelpmessageattribute",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
+      "patternId": "psavoidoverwritingbuiltincmdlets",
       "level": "Warning",
       "category": "ErrorProne",
       "enabled": false
@@ -87,6 +105,12 @@
       "enabled": true
     },
     {
+      "patternId": "psavoidsemicolonsaslineterminators",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
       "patternId": "psavoidshouldcontinuewithoutforce",
       "level": "Warning",
       "category": "ErrorProne",
@@ -104,6 +128,12 @@
       "category": "Security",
       "subcategory": "Auth",
       "enabled": true
+    },
+    {
+      "patternId": "psavoidusingbrokenhashalgorithms",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psavoidusingcomputernamehardcoded",
@@ -124,6 +154,12 @@
       "level": "Warning",
       "category": "ErrorProne",
       "enabled": true
+    },
+    {
+      "patternId": "psavoidusingdoublequotesforconstantstring",
+      "level": "Info",
+      "category": "CodeStyle",
+      "enabled": false
     },
     {
       "patternId": "psavoidusinginvokeexpression",
@@ -159,7 +195,7 @@
     },
     {
       "patternId": "psusecompatiblesyntax",
-      "level": "Warning",
+      "level": "Error",
       "category": "ErrorProne",
       "enabled": false
     },
@@ -218,6 +254,12 @@
       "enabled": false
     },
     {
+      "patternId": "psreviewunusedparameter",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
       "patternId": "psuseapprovedverbs",
       "level": "Warning",
       "category": "ErrorProne",
@@ -272,6 +314,12 @@
       "enabled": true
     },
     {
+      "patternId": "psuseprocessblockforpipelinecommand",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
       "patternId": "psusepscredentialtype",
       "level": "Warning",
       "category": "Security",
@@ -291,6 +339,12 @@
       "enabled": true
     },
     {
+      "patternId": "psusesingularnouns",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
       "patternId": "psusesupportsshouldprocess",
       "level": "Warning",
       "category": "ErrorProne",
@@ -301,6 +355,12 @@
       "level": "Warning",
       "category": "ErrorProne",
       "enabled": true
+    },
+    {
+      "patternId": "psuseusingscopemodifierinnewrunspaces",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psuseutf8encodingforhelpfile",

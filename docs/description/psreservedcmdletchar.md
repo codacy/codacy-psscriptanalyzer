@@ -1,12 +1,20 @@
+---
+description: Reserved Cmdlet Chars
+ms.custom: PSSA v1.21.0
+ms.date: 10/18/2021
+ms.topic: reference
+title: ReservedCmdletChar
+---
 # ReservedCmdletChar
 
 **Severity Level: Error**
 
 ## Description
 
-You cannot use following reserved characters in a function or cmdlet name as these can cause parsing or runtime errors.
+You cannot use following reserved characters in a function or cmdlet name as these can cause parsing
+or runtime errors.
 
-Reserved Characters include: `#,(){}[]&/\\$^;:\"'<>|?@`*%+=~`
+Reserved Characters include: ``#,(){}[]&/\\$^;:\"'<>|?@`*%+=~``
 
 ## How
 
@@ -16,14 +24,14 @@ Remove reserved characters from names.
 
 ### Wrong
 
-``` PowerShell
+```powershell
 function MyFunction[1]
 {...}
 ```
 
 ### Correct
 
-``` PowerShell
+```powershell
 function MyFunction
 {...}
 ```

@@ -1,25 +1,31 @@
+---
+description: Avoid Using Empty Catch Block
+ms.custom: PSSA v1.21.0
+ms.date: 10/18/2021
+ms.topic: reference
+title: AvoidUsingEmptyCatchBlock
+---
 # AvoidUsingEmptyCatchBlock
 
 **Severity Level: Warning**
 
 ## Description
 
-Empty catch blocks are considered a poor design choice as they result in the errors occurring in a `try` block not being acted upon.
-
-While this does not inherently lead to issues, they should be avoided wherever possible.
+Empty catch blocks are considered a poor design choice because any errors occurring in a
+`try` block cannot be handled.
 
 ## How
 
-Use ```Write-Error``` or ```throw``` statements within the catch block.
+Use `Write-Error` or `throw` statements within the catch block.
 
 ## Example
 
 ### Wrong
 
-``` PowerShell
+```powershell
 try
 {
-	1/0
+    1/0
 }
 catch [DivideByZeroException]
 {
@@ -28,22 +34,22 @@ catch [DivideByZeroException]
 
 ### Correct
 
-``` PowerShell
+```powershell
 try
 {
-	1/0
+    1/0
 }
 catch [DivideByZeroException]
 {
-	Write-Error "DivideByZeroException"
+    Write-Error "DivideByZeroException"
 }
 
 try
 {
-	1/0
+    1/0
 }
 catch [DivideByZeroException]
 {
-	Throw "DivideByZeroException"
+    throw "DivideByZeroException"
 }
 ```
