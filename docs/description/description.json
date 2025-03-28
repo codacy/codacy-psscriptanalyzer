@@ -30,6 +30,11 @@
     "description": "Empty catch blocks are considered poor design decisions because if an error occurs in the try block, this error is simply swallowed and not acted upon. While this does not inherently lead to bad things. It can and this should be avoided if possible. To fix a violation of this rule, using Write-Error or throw statements in catch blocks."
   },
   {
+    "patternId": "psavoidexclaimoperator",
+    "title": "Checks for use of the exclaim operator",
+    "description": "The negation operator ! should not be used for readability purposes. Use -not instead."
+  },
+  {
     "patternId": "psavoidglobalaliases",
     "title": "Checks that global aliases are not used",
     "description": "Checks that global aliases are not used. Global aliases are strongly discouraged as they overwrite desired aliases with name conflicts."
@@ -103,6 +108,11 @@
     "patternId": "psavoidusingusernameandpasswordparams",
     "title": "AvoidUsingUsernameAndPasswordParams",
     "description": "Functions should take in a Credential parameter of type PSCredential (with a Credential transformation attribute defined after it in PowerShell 4.0 or earlier) or set the Password parameter to type SecureString."
+  },
+  {
+    "patternId": "psavoidusingallowunencryptedauthentication",
+    "title": "Avoid sending credentials and secrets over unencrypted connections",
+    "description": "Avoid sending credentials and secrets over unencrypted connections."
   },
   {
     "patternId": "psavoidusingbrokenhashalgorithms",
@@ -197,7 +207,7 @@
   {
     "patternId": "pspossibleincorrectusageofredirectionoperator",
     "title": "Warn if someone uses '>' or '>=' inside an if, elseif, while or do-while statement because in most cases that is not the intention",
-    "description": "When switching between different languages it is easy to forget that '>' does not mean 'great than' in PowerShell."
+    "description": "When switching between different languages it is easy to forget that '>' does not mean 'greater than' in PowerShell."
   },
   {
     "patternId": "psprovidecommenthelp",
@@ -242,7 +252,7 @@
   {
     "patternId": "psusecorrectcasing",
     "title": "Check if cmdlet is cased correctly",
-    "description": "For better readability and consistency, use the exact casing of the cmdlet/function/parameter."
+    "description": "For better readability and consistency, use consistent casing."
   },
   {
     "patternId": "psuseliteralinitializerforhashtable",
@@ -262,7 +272,7 @@
   {
     "patternId": "psusepscredentialtype",
     "title": "Checks if a parameter named Credential is of type PSCredential",
-    "description": "For PowerShell 4.0 and earlier, a parameter named Credential with type PSCredential must have a credential transformation attribute defined after the PSCredential type attribute. "
+    "description": "For PowerShell 4.0 and earlier, a parameter named Credential with type PSCredential must have a credential transformation attribute defined after the PSCredential type attribute."
   },
   {
     "patternId": "psshouldprocess",

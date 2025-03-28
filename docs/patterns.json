@@ -1,6 +1,6 @@
 {
   "name": "psscriptanalyzer",
-  "version": "1.21.0",
+  "version": "1.24.0",
   "patterns": [
     {
       "patternId": "psalignassignmentstatement",
@@ -37,6 +37,12 @@
       "level": "Warning",
       "category": "ErrorProne",
       "enabled": true
+    },
+    {
+      "patternId": "psavoidexclaimoperator",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psavoidglobalaliases",
@@ -100,7 +106,7 @@
     },
     {
       "patternId": "psreservedparams",
-      "level": "Warning",
+      "level": "Error",
       "category": "ErrorProne",
       "enabled": true
     },
@@ -128,6 +134,12 @@
       "category": "Security",
       "subcategory": "Auth",
       "enabled": true
+    },
+    {
+      "patternId": "psavoidusingallowunencryptedauthentication",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psavoidusingbrokenhashalgorithms",

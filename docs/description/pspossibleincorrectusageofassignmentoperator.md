@@ -1,7 +1,6 @@
 ---
 description: Equal sign is not an assignment operator. Did you mean the equality operator \'-eq\'?
-ms.custom: PSSA v1.21.0
-ms.date: 10/18/2021
+ms.date: 06/28/2023
 ms.topic: reference
 title: PossibleIncorrectUsageOfAssignmentOperator
 ---
@@ -53,7 +52,7 @@ if ($a = Get-Something) # Only execute action if command returns something and a
 }
 ```
 
-## Implicit suppresion using Clang style
+## Implicit suppression using Clang style
 
 There are some rare cases where assignment of variable inside an `if` statement is by design.
 Instead of suppressing the rule, one can also signal that assignment was intentional by wrapping the

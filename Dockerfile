@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/powershell:lts-7.2-alpine-3.14
+FROM mcr.microsoft.com/powershell:lts-7.4-alpine-3.17
 LABEL maintainer="Codacy <code@codacy.com>"
 COPY docs /docs
 COPY runTool.ps1 /runTool.ps1
