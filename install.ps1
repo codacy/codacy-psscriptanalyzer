@@ -128,6 +128,7 @@ foreach($pat in $patterns) {
     $title = getTitle $patternNameCamelCased ;
     if($title -eq $patternNameCamelCased) { Write-Output "$patternNameCamelCased"; $count = $count+1;}
     $description = $pat.Description ;
+    if($description.Length -gt 500) { $description = $description.Substring(0, 497) + '...' } ;
     $level = if($pat.Severity -eq 'Information') { 'Info' } else { $pat.Severity.ToString() } ;
     $category = getCategory $level $patternId;
     $enabledByDefault = $enabledRules -contains $patternId
