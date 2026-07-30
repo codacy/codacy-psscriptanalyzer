@@ -1,6 +1,6 @@
 {
   "name": "psscriptanalyzer",
-  "version": "1.24.0",
+  "version": "1.25.0",
   "patterns": [
     {
       "patternId": "psalignassignmentstatement",
@@ -109,6 +109,12 @@
       "level": "Error",
       "category": "ErrorProne",
       "enabled": true
+    },
+    {
+      "patternId": "psavoidreservedwordsasfunctionnames",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psavoidsemicolonsaslineterminators",
@@ -302,7 +308,25 @@
       "enabled": false
     },
     {
+      "patternId": "psuseconsistentparametersetname",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
+      "patternId": "psuseconsistentparameterskind",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
       "patternId": "psuseconsistentwhitespace",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
+    },
+    {
+      "patternId": "psuseconstrainedlanguagemode",
       "level": "Warning",
       "category": "ErrorProne",
       "enabled": false
@@ -349,6 +373,12 @@
       "level": "Warning",
       "category": "ErrorProne",
       "enabled": true
+    },
+    {
+      "patternId": "psusesinglevaluefrompipelineparameter",
+      "level": "Warning",
+      "category": "ErrorProne",
+      "enabled": false
     },
     {
       "patternId": "psusesingularnouns",

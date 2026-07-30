@@ -7,12 +7,12 @@
   {
     "patternId": "psavoidusingcmdletaliases",
     "title": "AvoidUsingCmdletAliases",
-    "description": "An alias is an alternate name for a cmdlet or command element like a function or script. An implicit alias omits the 'Get-' prefix for commands. However, when writing scripts for long-term maintenance, consider using the full cmdlet name instead of aliases. Aliases can reduce readability, understandability, and availability, making scripts harder to maintain by others or even the original author over time."
+    "description": "An alias is an alternate name or nickname for a cmdlet or for a command element, such as a function, script, file, or executable file. An implicit alias is also the omission of the 'Get-' prefix for commands with this prefix. But when writing scripts that will potentially need to be maintained over time, either by the original author or another Windows PowerShell scripter, please consider using full cmdlet name instead of alias. Aliases can introduce these problems, readability, understandabi..."
   },
   {
     "patternId": "psavoidassignmenttoautomaticvariable",
     "title": "Checks for assignment to automatic variables",
-    "description": "This automatic variables is built into PowerShell and readonly."
+    "description": "This automatic variable is built into PowerShell and readonly."
   },
   {
     "patternId": "psavoiddefaultvalueswitchparameter",
@@ -27,7 +27,7 @@
   {
     "patternId": "psavoidusingemptycatchblock",
     "title": "AvoidUsingEmptyCatchBlock",
-    "description": "Empty catch blocks are considered poor design decisions because if an error occurs in the try block, this error is simply swallowed and not acted upon. While this does not inherently lead to bad things. It can and this should be avoided if possible. To fix a violation of this rule, using Write-Error or throw statements in catch blocks."
+    "description": "Empty catch blocks are considered poor design decisions because if an error occurs in the try block, this error is simply swallowed and not acted upon. While this does not inherently cause problems, it can, so it should be avoided where possible. To fix a violation of this rule, use Write-Error or throw statements in catch blocks."
   },
   {
     "patternId": "psavoidexclaimoperator",
@@ -62,7 +62,7 @@
   {
     "patternId": "psavoidmultipletypeattributes",
     "title": "Check that parameter does not be assigned to multiple types",
-    "description": "Prameter should not have more than one type specifier."
+    "description": "Parameter should not have more than one type specifier."
   },
   {
     "patternId": "psavoidnulloremptyhelpmessageattribute",
@@ -77,7 +77,7 @@
   {
     "patternId": "psavoidusingpositionalparameters",
     "title": "AvoidUsingPositionalParameters",
-    "description": "Readability and clarity should be the goal of any script we expect to maintain over time. When calling a command that takes parameters, where possible consider using name parameters as opposed to positional parameters. To fix a violation of this rule, please use named parameters instead of positional parameters when calling a command."
+    "description": "Readability and clarity should be the goal of any script we expect to maintain over time. When calling a command that takes parameters, where possible consider using named parameters as opposed to positional parameters. To fix a violation of this rule, please use named parameters instead of positional parameters when calling a command."
   },
   {
     "patternId": "psreservedcmdletchar",
@@ -88,6 +88,11 @@
     "patternId": "psreservedparams",
     "title": "ReservedParams",
     "description": "Checks for reserved parameters in function definitions. If these parameters are defined by the user, an error generally occurs."
+  },
+  {
+    "patternId": "psavoidreservedwordsasfunctionnames",
+    "title": "AvoidReservedWordsAsFunctionNames",
+    "description": "Avoid using reserved words as function names. Using reserved words as function names can cause errors or unexpected behavior in scripts."
   },
   {
     "patternId": "psavoidsemicolonsaslineterminators",
@@ -142,7 +147,7 @@
   {
     "patternId": "psavoidusinginvokeexpression",
     "title": "Check to make sure that Invoke-Expression is not used",
-    "description": "The Invoke-Expression cmdlet runs a specified string as a command and returns its results. While powerful, it should be used cautiously, especially when handling user-provided data, as it can lead to code injection vulnerabilities. If the data comes from the program itself, it may be safe, but when user data is involved, proper precautions are needed. To fix a violation, remove Invoke-Expression and explore alternative solutions."
+    "description": "The Invoke-Expression cmdlet evaluates or runs a specified string as a command and returns the results of the expression or command. It can be extraordinarily powerful so it is not that you want to never use it but you need to be very careful about using it.  In particular, you are probably on safe ground if the data only comes from the program itself.  If you include any data provided from the user - you need to protect yourself from Code Injection. To fix a violation of this rule, please re..."
   },
   {
     "patternId": "psavoidusingplaintextforpassword",
@@ -177,7 +182,7 @@
   {
     "patternId": "psmisleadingbacktick",
     "title": "Checks that lines don't end with a backtick followed by whitespace",
-    "description": "Ending a line with an escaped whitepsace character is misleading. A trailing backtick is usually used for line continuation. Users typically don't intend to end a line with escaped whitespace."
+    "description": "Ending a line with an escaped whitespace character is misleading. A trailing backtick is usually used for line continuation. Users typically don't intend to end a line with escaped whitespace."
   },
   {
     "patternId": "psmissingmodulemanifestfield",
@@ -197,7 +202,7 @@
   {
     "patternId": "pspossibleincorrectcomparisonwithnull",
     "title": "Analyzes the ast to check that $null is on the left side of any equality comparisons",
-    "description": "Checks that $null is on the left side of any equaltiy comparisons (eq, ne, ceq, cne, ieq, ine). When there is an array on the left side of a null equality comparison, PowerShell will check for a $null IN the array rather than if the array is null. If the two sides of the comaprision are switched this is fixed. Therefore, $null should always be on the left side of equality comparisons just in case."
+    "description": "Checks that $null is on the left side of any equality comparisons (eq, ne, ceq, cne, ieq, ine). When there is an array on the left side of a null equality comparison, PowerShell will check for a $null IN the array rather than if the array is null. If the two sides of the comparison are switched this is fixed. Therefore, $null should always be on the left side of equality comparisons just in case."
   },
   {
     "patternId": "pspossibleincorrectusageofassignmentoperator",
@@ -242,12 +247,27 @@
   {
     "patternId": "psuseconsistentindentation",
     "title": "Checks if indentation is consistent throughout the source file",
-    "description": "Each statement block should have a consistent indenation."
+    "description": "Each statement block should have a consistent indentation."
+  },
+  {
+    "patternId": "psuseconsistentparametersetname",
+    "title": "Check for case-sensitive parameter set",
+    "description": "Parameter set names are case-sensitive in PowerShell. This rule checks for case mismatches between DefaultParameterSetName and ParameterSetName values, case mismatches between different ParameterSetName values, and missing DefaultParameterSetName when parameter sets are used."
+  },
+  {
+    "patternId": "psuseconsistentparameterskind",
+    "title": "Checks if function parameters definition kind is same as preferred",
+    "description": "Use consistent parameters definition kind to prevent potential unexpected behavior with inline functions parameters or param() block."
   },
   {
     "patternId": "psuseconsistentwhitespace",
     "title": "Checks if whitespace usage is consistent throughout the source file",
-    "description": "Check for whitespace between keyword and open paren/curly, around assigment operator ('='), around arithmetic operators and after separators (',' and ';')"
+    "description": "Check for whitespace between keyword and open paren/curly, around assignment operator ('='), around arithmetic operators and after separators (',' and ';')"
+  },
+  {
+    "patternId": "psuseconstrainedlanguagemode",
+    "title": "Checks for patterns that indicate Constrained Language Mode should be considered",
+    "description": "Identifies script patterns that are restricted in Constrained Language Mode. Constrained Language Mode limits the types, cmdlets, and .NET methods that can be used to help secure PowerShell in environments requiring additional restrictions."
   },
   {
     "patternId": "psusecorrectcasing",
@@ -285,6 +305,11 @@
     "description": "Functions that have verbs like New, Start, Stop, Set, Reset, Restart that change system state should support 'ShouldProcess'."
   },
   {
+    "patternId": "psusesinglevaluefrompipelineparameter",
+    "title": "UseSingleValueFromPipelineParameter",
+    "description": "Use at most a single ValueFromPipeline parameter per parameter set to avoid undefined or unexpected behaviour."
+  },
+  {
     "patternId": "psusesingularnouns",
     "title": "Analyzes scripts to check that all defined cmdlets use singular nouns",
     "description": "Cmdlet should use singular instead of plural nouns."
@@ -292,7 +317,7 @@
   {
     "patternId": "psusesupportsshouldprocess",
     "title": "Checks if a function defines Confirm and/or WhatIf parameters manually instead of using SupportsShouldProcess attribute",
-    "description": "Commands typically provide Confirm and Whatif parameters to give more control on its execution in an interactive environment. In PowerShell, a command can use a SupportsShouldProcess attribute to provide this capability. Hence, manual addition of these parameters to a command is discouraged. If a commands need Confirm and Whatif parameters, then it should support ShouldProcess."
+    "description": "Commands typically provide Confirm and WhatIf parameters to give more control on its execution in an interactive environment. In PowerShell, a command can use a SupportsShouldProcess attribute to provide this capability. Hence, manual addition of these parameters to a command is discouraged. If a command needs Confirm and WhatIf parameters, then it should support ShouldProcess."
   },
   {
     "patternId": "psusetoexportfieldsinmanifest",
